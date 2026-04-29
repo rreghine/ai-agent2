@@ -1,4 +1,4 @@
-# E-Commerce AI Agent — Claude Edition | Parte 2
+# E-Commerce AI Agent — Claude Sonnet + Gemma 3/4 (Gemini)
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue?style=flat-square)
 ![Claude](https://img.shields.io/badge/Anthropic-Claude_Sonnet-black?style=flat-square)
@@ -75,14 +75,13 @@ Streamlit — 4 abas
 
 ## Dataset
 
-**Brazilian E-Commerce — Olist (Kaggle)**
+**Brazilian E-Commerce (Kaggle)**
 
 - 99.441 pedidos reais e anonimizados
 - 7 tabelas relacionadas — pedidos, clientes, produtos, vendedores, pagamentos, avaliacoes
 - Periodo: 2016 a 2018
 - Contexto 100% brasileiro
 
-[Download do dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
 ---
 
@@ -91,9 +90,9 @@ Streamlit — 4 abas
 ```
 ai-agent-part2/
 |
-|-- Agent_Claude_SQL.ipynb        <- Notebook principal (Google Colab)
-|-- app.py                        <- App Streamlit Multi-LLM
-|-- olist.db                      <- Banco SQLite (gerado no notebook)
+|-- Agent_Claude_SQL.ipynb        
+|-- app.py                        
+|-- olist.db                      
 |-- requirements.txt
 |-- preview_agente.png
 |-- preview_benchmark.png
@@ -142,7 +141,6 @@ Claude recebe a pergunta, o ground truth e a resposta do agente e avalia semanti
 ### Ground Truth Dinamico
 Calculado diretamente no banco via SQL — nao e dado fixo:
 
-- Ticket medio: `SELECT ROUND(AVG(price),2) FROM items`
 - Taxa de atraso: calculada com comparacao de datas reais
 - Estado com mais pedidos: contagem real por estado
 - 8 tipos de perguntas com ground truth automatico
@@ -163,65 +161,6 @@ Os 3 modelos analisam os mesmos dados e geram 5 insights estrategicos independen
 
 ---
 
-## Como Executar
-
-```bash
-# 1. Clonar o repositorio
-git clone https://github.com/rreghine/ai-agent-part2.git
-cd ai-agent-part2
-
-# 2. Instalar dependencias
-pip install -r requirements.txt
-
-# 3. Configurar API Keys
-# Crie o arquivo .streamlit/secrets.toml
-echo 'ANTHROPIC_API_KEY = "sua_key_aqui"' >> .streamlit/secrets.toml
-echo 'GEMINI_API_KEY    = "sua_key_aqui"' >> .streamlit/secrets.toml
-
-# 4. Rodar o app
-streamlit run app.py
-```
-
-### Obtendo as API Keys
-
-**Anthropic (Claude):**
-1. Acesse [console.anthropic.com](https://console.anthropic.com)
-2. Va em API Keys -> Create Key
-3. Adicione creditos — minimo $5 suficiente para o projeto inteiro
-
-**Google (Gemma 3 e Gemma 4):**
-1. Acesse [aistudio.google.com](https://aistudio.google.com)
-2. Clique em Get API Key -> Create API Key
-3. Gratuito — sem necessidade de cartao de credito
-
-### Rodando no Google Colab
-
-```python
-import shutil, os, subprocess, threading, time
-from google.colab import userdata
-
-shutil.copy('/content/drive/MyDrive/.../app.py', '/content/app.py')
-shutil.copy('/content/drive/MyDrive/.../olist.db', '/content/olist.db')
-
-os.makedirs('/content/.streamlit', exist_ok=True)
-with open('/content/.streamlit/secrets.toml', 'w') as f:
-    f.write(f'ANTHROPIC_API_KEY = "{userdata.get("ANTHROPIC_API_KEY")}"\n')
-    f.write(f'GEMINI_API_KEY    = "{userdata.get("GEMINI_API_KEY")}"\n')
-
-def run():
-    subprocess.run(['streamlit', 'run', '/content/app.py',
-                    '--server.port', '8501', '--server.headless', 'true',
-                    '--server.enableCORS', 'false'])
-
-threading.Thread(target=run, daemon=True).start()
-time.sleep(8)
-
-from google.colab.output import eval_js
-print(eval_js("google.colab.kernel.proxyPort(8501)"))
-```
-
----
-
 ## Tecnologias Utilizadas
 
 | Categoria | Ferramentas |
@@ -234,23 +173,6 @@ print(eval_js("google.colab.kernel.proxyPort(8501)"))
 | Rastreamento | MLflow |
 | Interface | Streamlit |
 | Ambiente | Google Colab |
-
----
-
-## Proximos Passos — Parte 3
-
-- Langfuse — observabilidade profissional de LLMs
-- RAGAS — framework de avaliacao especializado
-- RAG leve com few-shot dinamico para melhorar o SQL
-- Adicao de Mistral e Qwen ao benchmark
-
----
-
-## Parte 1
-
-O projeto original com Google Gemma 3, RAG + FAISS e avaliacao por overlap de palavras esta disponivel em:
-
-[github.com/rreghine/ai-agent](https://github.com/rreghine/ai-agent)
 
 ---
 
