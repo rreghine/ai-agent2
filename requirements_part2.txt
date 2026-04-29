@@ -1,0 +1,8 @@
+anthropic
+google-genai
+mlflow
+streamlit
+pandas
+numpy
+matplotlib
+seaborn
