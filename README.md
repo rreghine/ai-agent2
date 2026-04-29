@@ -20,13 +20,13 @@ de dados para comparação justa de acurácia, tokens, latência e custo.
 ## Preview
 
 ### Interface do Agente
-![Agente](preview_agente.png)
+![Agente](Agent_preview.png)
 
 ### Benchmark Multi-LLM
-![Benchmark](preview_benchmark.png)
+![Benchmark](benchmark_preview.png)
 
 ### Dashboard com Insights dos 3 Modelos
-![Dashboard](preview_dashboard.png)
+![Dashboard](dashboard2_preview.png)
 
 ---
 
