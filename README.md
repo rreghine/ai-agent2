@@ -1,4 +1,4 @@
-# E-Commerce AI Agent — Claude Sonnet + Gemma 3/4 (Gemini)
+# E-Commerce AI Agent — Sonnet (Claude) + Gemma 3/4 (Google)
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue?style=flat-square)
 ![Claude](https://img.shields.io/badge/Anthropic-Claude_Sonnet-black?style=flat-square)
