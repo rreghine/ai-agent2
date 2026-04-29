@@ -8,7 +8,12 @@
 ![MLflow](https://img.shields.io/badge/MLflow-Tracking-blue?style=flat-square)
 ![Status](https://img.shields.io/badge/Status-Complete-brightgreen?style=flat-square)
 
-Evolucao da Parte 1 — substituicao do RAG por SQL real, troca do Gemma 3 pelo Claude Sonnet, avaliacao hibrida com LLM como Juiz e benchmark ao vivo comparando 3 modelos sobre o mesmo banco de dados.
+Agente de IA para análise de e-commerce com suporte a 3 modelos de linguagem —
+Anthropic Claude Sonnet, Google Gemma 3 27B e Google Gemma 4 31B. Utiliza
+Text-to-SQL sobre banco SQLite real, avaliação híbrida com Ground Truth dinâmico
+e LLM como Juiz, retry automático de SQL, rastreamento com MLflow e benchmark
+ao vivo onde os 3 modelos respondem as mesmas perguntas sobre o mesmo banco
+de dados para comparação justa de acurácia, tokens, latência e custo.
 
 ---
 
